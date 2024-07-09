@@ -8,7 +8,6 @@ const corsMiddleware = cors()
 app.use(corsMiddleware)
 const jsonBodyMiddleware = bodyParser.json()
 app.use(jsonBodyMiddleware)
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 3000
 
