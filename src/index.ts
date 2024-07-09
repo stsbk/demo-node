@@ -1,8 +1,21 @@
-const express = require("express");
-const app = express();
+import bodyParser from 'body-parser'
+import express from 'express'
+import cors from 'cors'
 
-app.get("/", (req: any, res: { send: (arg0: string) => any; }) => res.send("Express on Vercel"));
+const app = express()
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+const corsMiddleware = cors()
+app.use(corsMiddleware)
+const jsonBodyMiddleware = bodyParser.json()
+app.use(jsonBodyMiddleware)
+app.use(bodyParser.urlencoded({ extended: true }));
 
-module.exports = app;
+const port = process.env.PORT || 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello world')
+})
+  
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
